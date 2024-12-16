@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prévisions Météo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Prévisions Météo sur 5 Jours</h1>
+        <form id="weatherForm" class="mt-4">
+            <div class="mb-3">
+                <label for="city" class="form-label">Entrez une ville :</label>
+                <input type="text" class="form-control" id="city" placeholder="Exemple : Paris" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Obtenir la météo</button>
+        </form>
+        <div id="weatherResults" class="mt-5"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script>
+        const form = document.getElementById('weatherForm');
+        const weatherResults = document.getElementById('weatherResults');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // 阻止表单默认提交行为
+            const city = document.getElementById('city').value;
+            weatherResults.innerHTML = 'Chargement...';
+
+            try {
+                // 调用天气 API
+                const response = await fetch(`/weather/5days?city=${city}`);
+                const data = await response.json();
+
+                // 动态显示天气信息
+                weatherResults.innerHTML = `
+                    <h2>Prévisions pour ${data.city}, ${data.country}</h2>
+                    <ul class="list-group mt-3">
+                        ${data.forecasts.map(forecast => `
+                            <li class="list-group-item">
+                                <strong>Date :</strong> ${forecast.date} <br>
+                                <strong>Température max :</strong> ${forecast.max_temp}°C <br>
+                                <strong>Température min :</strong> ${forecast.min_temp}°C <br>
+                                <strong>Condition :</strong> ${forecast.condition}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            } catch (error) {
+                weatherResults.innerHTML = '<div class="alert alert-danger">Erreur lors de la récupération des données météo.</div>';
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
