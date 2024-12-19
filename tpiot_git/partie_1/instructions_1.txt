@@ -1,0 +1,80 @@
+
+
+-- Ceci est un document explicatif pour la partie 1
+
+1.1 Spécifications de la base de données
+Question 1
+internetIOT.pdf
+
+Question 2
+À la ligne 1 du fichier logement.sql, la commande DROP TABLE est utilisée.
+
+Question 3
+À la ligne 10 du fichier logement.sql, une table est créée pour stocker les informations des logements. Chaque information utilise un type approprié, par exemple adresse VARCHAR(255) NOT NULL pour éviter le gaspillage d'espace de stockage. Les clés primaires (PRIMARY KEY) et les clés étrangères (FOREIGN KEY) sont définies pour relier les différentes tables.
+
+Question 4
+À la ligne 81 du fichier logement.sql, la commande INSERT est utilisée pour insérer directement des données dans les tables logement et piece.
+
+Question 5
+À la ligne 94 du fichier logement.sql, la commande INSERT est utilisée pour créer quatre types de capteurs.
+
+Question 6
+À la ligne 105 du fichier logement.sql, la commande INSERT est utilisée pour créer deux capteurs, avec des données correspondantes appelées via une commande SELECT dans la table type.
+
+Question 7
+À la ligne 117 du fichier logement.sql, la commande INSERT est utilisée pour insérer quatre données dans la table mesure.
+
+Question 8
+À la ligne 139 du fichier logement.sql, la commande INSERT est utilisée pour insérer quatre données dans la table facture.
+
+1.2 Remplissage de la base de données
+Dans le fichier remplissage.py, plusieurs groupes de données peuvent être insérés dans les tables mesure et facture en une seule fois. Des données différentes sont générées à l'aide de la fonction random. La connexion à la base de données est réalisée via :
+conn = sqlite3.connect('logement.db')  
+conn.row_factory = sqlite3.Row  
+c = conn.cursor()
+Cette méthode permet d'établir une liaison avec la base de données.
+
+
+
+
+
+
+
+
+
+
+--这是一个对partie1的说明文档
+
+
+1.1 Spécifications de la base de données
+Question 1
+internetIOT.pdf
+
+Question 2
+在logement.sql文件中的第1行，使用DROP TABLE命令
+
+Question 3
+在logement.sql文件中的第10行，创建表格储存logement的信息，每种信息使用相应的类型，比如adresse VARCHAR(255) NOT NULL使用VARCHAR避免浪费储存空间，并设置好PRIMARY KEY和FOREIGN KEY用来关联不同的TABLE
+
+Question 4
+在logement.sql文件中的第81行，使用INSERT命令向表格中直接插入logement和piece的数据
+
+Question 5
+在logement.sql文件中的第94行，使用INSERT命令创建了四种传感器的类型
+
+Question 6
+在logement.sql文件中的第105行，使用INSERT命令创建了两个传感器，并通过SELECT调用了type中对应的数据
+
+Question 7
+在logement.sql文件中的第117行，使用INSERT命令向mesure中分别插入了四个数据
+
+Question 8
+在logement.sql文件中的第139行，使用INSERT命令插入了四个facture数据
+
+1.2 Remplissage de la base de données
+在remplissage.py中可以实现一次为mesure和facture插入多组数据，并通过random来生成不同的数据，其中使用了
+conn = sqlite3.connect('logement.db')
+conn.row_factory = sqlite3.Row
+c = conn.cursor()实现了与数据库的链接
+
+

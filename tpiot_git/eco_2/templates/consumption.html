@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consommation des Pièces</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Consommation par Logement et Pièce</h2>
+        <div id="logementData" class="row g-4"></div>
+    </div>
+
+    <script>
+        // Récupérer les données de consommation via l'API
+        fetch('/api/consumption')
+            .then(response => response.json())
+            .then(data => {
+                const logementDataDiv = document.getElementById('logementData');
+
+                // Parcourir chaque logement et afficher ses données
+                Object.entries(data).forEach(([logementId, logement]) => {
+                    const logementDiv = document.createElement('div');
+                    logementDiv.classList.add('col-12');
+
+                    logementDiv.innerHTML = `
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="mb-0">Logement : ${logement.adresse}</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="pieces-${logementId}" class="row g-3"></div>
+                            </div>
+                        </div>
+                    `;
+
+                    const piecesDiv = logementDiv.querySelector(`#pieces-${logementId}`);
+
+                    Object.entries(logement.pieces).forEach(([pieceNom, sensors]) => {
+                        const pieceDiv = document.createElement('div');
+                        pieceDiv.classList.add('col-12');
+
+                        let sensorsInfo = sensors.map(sensor => `
+                            <div class="mb-2">
+                                <strong>Type :</strong> ${sensor.type}<br>
+                                <strong>Valeur :</strong> ${sensor.value ?? 'Données indisponibles'} ${sensor.unit || ''}
+                            </div>
+                        `).join('');
+
+                        pieceDiv.innerHTML = `
+                            <div class="card border-secondary">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">Pièce : ${pieceNom}</h5>
+                                </div>
+                                <div class="card-body">
+                                    ${sensorsInfo}
+                                </div>
+                            </div>
+                        `;
+
+                        piecesDiv.appendChild(pieceDiv);
+                    });
+
+                    logementDataDiv.appendChild(logementDiv);
+                });
+            })
+            .catch(error => console.error('Erreur lors de la récupération des données:', error));
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

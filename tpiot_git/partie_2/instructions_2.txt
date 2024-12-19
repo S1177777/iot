@@ -1,0 +1,40 @@
+
+-- Ceci est un document explicatif pour partie_2. Vous pouvez consulter toutes les fonctionnalités à l'adresse suivante : http://127.0.0.1:8000/docs
+
+2.1 Exercice 1 : remplissage de la base de données
+À la ligne 10 du fichier REST.py, utilisez BaseModel pour garantir la validité des types.Consulter les données des logements via un point d'accès GET.Ajouter de nouvelles factures dans la table facture via un point d'accès POST.Ajouter de nouvelles mesures dans la table mesure via un point d'accès POST.
+
+
+2.2 Exercice 2 : serveur web
+À la ligne 72 du fichier REST.py et chart.png, effectuez une requête SQLite pour extraire les champs fac_type et montant de la table facture. Ensuite, utilisez la fonctionnalité de concaténation de chaînes en Python pour insérer dynamiquement les résultats de la requête dans un modèle HTML. Enfin, renvoyez la page HTML via FastAPI.
+
+
+2.3 Exercice 3 : météo
+À la ligne 124 du fichier REST.py, configurez d'abord WeatherAPI, puis définissez un point d'accès GET avec FastAPI. Ensuite, utilisez la bibliothèque requests de Python pour envoyer une requête HTTP GET à WeatherAPI, analysez les données JSON renvoyées par WeatherAPI, extrayez les champs nécessaires, et organisez enfin les données extraites dans une réponse JSON structurée
+
+
+2.4 Exercice 4 : intégration
+Cette partie sera présentée en détail dans 3 HTML/CSS/Javascript.
+
+
+
+
+
+
+
+
+
+
+--这是一个partie_2的说明文档，可以在http://127.0.0.1:8000/docs中查看所有功能
+
+2.1 Exercice 1 : remplissage de la base de données
+在REST.py文件中的第10行，使用BaseModel来确保类型的正确性，Consulter les données des logements avec un point d'accès GET，Ajouter des nouvelles factures dans la table facture via un point d'accès POST，Ajouter des nouvelles mesures dans la table mesure via un point d'accès POST
+
+2.2 Exercice 2 : serveur web
+在REST.py文件中的第72行，使用 SQLite 查询数据库中 facture 表的 fac_type和 montant，然后使用 Python 的字符串拼接功能，将查询结果动态插入到一个 HTML 模板中，最后通过 FastAPI 返回 HTML 页面
+
+2.3 Exercice 3 : météo
+在REST.py文件中的第124行，首先配置 WeatherAPI，然后使用 FastAPI 定义了一个 GET 请求的端点，之后使用 Python 的 requests 库向 WeatherAPI 发送 HTTP GET 请求，接着解析 WeatherAPI 返回的 JSON 数据，提取需要的字段，最后将提取后的数据组织成一个结构化的 JSON 响应
+
+2.4 Exercice 4 : integration
+此部分将在3 HTML/CSS/Javascript中详细呈现
